@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Script/Bomb.gd" type="Script" id=1]
+[ext_resource path="res://Image/bomb/bomb_1.png" type="Texture" id=2]
+[ext_resource path="res://Image/bomb/bomb_2.png" type="Texture" id=3]
+[ext_resource path="res://Image/bomb/bomb.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Bomb",
+"speed": 5.0
+} ]
+
+[node name="Bomb" type="KinematicBody2D"]
+position = Vector2( 72, 56 )
+collision_layer = 4
+collision_mask = 7
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Bomb" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "Bomb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,152 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://Image/bomb/bomb_exploded2.png" type="Texture" id=1]
+[ext_resource path="res://Image/bomb/explosion_horizontal_right_last1.png" type="Texture" id=2]
+[ext_resource path="res://Image/bomb/explosion_vertical_top_last1.png" type="Texture" id=3]
+[ext_resource path="res://Image/bomb/bomb_exploded1.png" type="Texture" id=4]
+[ext_resource path="res://Image/bomb/bomb_exploded.png" type="Texture" id=5]
+[ext_resource path="res://Image/bomb/explosion_vertical_down_last1.png" type="Texture" id=6]
+[ext_resource path="res://Image/bomb/explosion_horizontal_left_last.png" type="Texture" id=7]
+[ext_resource path="res://Image/bomb/explosion_vertical_down_last.png" type="Texture" id=8]
+[ext_resource path="res://Image/bomb/explosion_vertical_top_last2.png" type="Texture" id=9]
+[ext_resource path="res://Image/bomb/explosion_vertical_down_last2.png" type="Texture" id=10]
+[ext_resource path="res://Image/bomb/explosion_vertical_top_last.png" type="Texture" id=11]
+[ext_resource path="res://Image/bomb/explosion_horizontal_right_last.png" type="Texture" id=12]
+[ext_resource path="res://Image/bomb/explosion_horizontal_left_last2.png" type="Texture" id=13]
+[ext_resource path="res://Image/bomb/explosion_horizontal_left_last1.png" type="Texture" id=14]
+[ext_resource path="res://Image/bomb/explosion_horizontal_right_last2.png" type="Texture" id=15]
+[ext_resource path="res://Script/BombExplosion.gd" type="Script" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "trungtam",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "tren",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "duoi",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "trai",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 2 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "phai",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 7, 7 )
+
+[node name="BombExplosion" type="KinematicBody2D"]
+position = Vector2( 64, 64 )
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 16 )
+
+[node name="trungtam" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "trungtam"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Area2D" type="Area2D" parent="trungtam"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trungtam/Area2D"]
+shape = SubResource( 2 )
+
+[node name="tren" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -32 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+animation = "tren"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="tren" type="Area2D" parent="tren"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tren/tren"]
+shape = SubResource( 4 )
+
+[node name="duoi" type="AnimatedSprite" parent="."]
+position = Vector2( -4.76837e-07, 32 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 5 )
+animation = "duoi"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="duoi" type="Area2D" parent="duoi"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duoi/duoi"]
+shape = SubResource( 6 )
+
+[node name="trai" type="AnimatedSprite" parent="."]
+position = Vector2( -32, -4.76837e-07 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 7 )
+animation = "trai"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="trai" type="Area2D" parent="trai"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="trai/trai"]
+shape = SubResource( 8 )
+
+[node name="phai" type="AnimatedSprite" parent="."]
+position = Vector2( 32, 0 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 9 )
+animation = "phai"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="phai" type="Area2D" parent="phai"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="phai/phai"]
+shape = SubResource( 10 )
+[connection signal="body_entered" from="tren/tren" to="." method="_on_tren_body_entered"]
+[connection signal="body_entered" from="duoi/duoi" to="." method="_on_duoi_body_entered"]
+[connection signal="body_entered" from="trai/trai" to="." method="_on_trai_body_entered"]
+[connection signal="body_entered" from="phai/phai" to="." method="_on_phai_body_entered"]
