@@ -3,9 +3,9 @@ extends KinematicBody2D
 var sjgdfga
 var test1="test huyto"
 
+var test = "test qhuy"
 var bomb = preload("res://Scene/Bomb.tscn")
 
-var test = "test git"
 var chuyendong = Vector2()
 var tocdo = 100
 var bomx = 0;
