@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var bomb = preload("res://Scene/Bomb.tscn")
 
+var test = "test git"
 var chuyendong = Vector2()
 var tocdo = 100
 var bomx = 0;
