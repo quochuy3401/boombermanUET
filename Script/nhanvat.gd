@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var test1="test huyto"
+
 var bomb = preload("res://Scene/Bomb.tscn")
 
 var chuyendong = Vector2()
