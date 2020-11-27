@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var sjgdfga
 var test1="test huyto"
 
 var bomb = preload("res://Scene/Bomb.tscn")
