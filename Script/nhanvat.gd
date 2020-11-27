@@ -65,3 +65,10 @@ func _input(event):
 			get_tree().get_root().get_child(0).add_child(newBomb)
 		pass 
 
+
+
+
+func _on_Area2D_body_entered(body):
+	if body.collision_layer == 8 :
+		get_node(".").queue_free();
+	pass # Replace with function body.
