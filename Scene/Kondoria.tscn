@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Image/kododria/kondoria_left3.png" type="Texture" id=1]
+[ext_resource path="res://Image/kododria/kondoria_dead.png" type="Texture" id=2]
+[ext_resource path="res://Image/kododria/kondoria_right2.png" type="Texture" id=3]
+[ext_resource path="res://Image/kododria/kondoria_right3.png" type="Texture" id=4]
+[ext_resource path="res://Image/kododria/kondoria_right1.png" type="Texture" id=5]
+[ext_resource path="res://Image/kododria/kondoria_left2.png" type="Texture" id=6]
+[ext_resource path="res://Image/kododria/kondoria_left1.png" type="Texture" id=7]
+[ext_resource path="res://Script/Kondoria.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Right",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.8, 15.8 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 15 )
+
+[node name="Kondoria" type="KinematicBody2D"]
+collision_layer = 16
+collision_mask = 55
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -4.76837e-07, 4.76837e-07 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "Right"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

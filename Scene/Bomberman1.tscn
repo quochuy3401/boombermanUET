@@ -1,76 +1,44 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://map.tres" type="TileSet" id=1]
-[ext_resource path="res://Image/nhan vat/player_up.png" type="Texture" id=2]
-[ext_resource path="res://Image/nhan vat/player_up_1.png" type="Texture" id=3]
-[ext_resource path="res://Image/nhan vat/player_right_1.png" type="Texture" id=4]
-[ext_resource path="res://Image/nhan vat/player_left_2.png" type="Texture" id=5]
-[ext_resource path="res://Image/nhan vat/player_up_2.png" type="Texture" id=6]
-[ext_resource path="res://Image/nhan vat/player_right.png" type="Texture" id=7]
-[ext_resource path="res://Image/nhan vat/player_left_1.png" type="Texture" id=8]
-[ext_resource path="res://Image/nhan vat/player_left.png" type="Texture" id=9]
-[ext_resource path="res://Image/nhan vat/player_right_2.png" type="Texture" id=10]
-[ext_resource path="res://Image/nhan vat/player_down_1.png" type="Texture" id=11]
-[ext_resource path="res://Image/nhan vat/player_down.png" type="Texture" id=12]
-[ext_resource path="res://Image/nhan vat/player_down_2.png" type="Texture" id=13]
-[ext_resource path="res://Script/nhanvat.gd" type="Script" id=14]
+[ext_resource path="res://Scene/nhanvat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/Speed.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/Heart.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scene/Bombs.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Script/HeartDisplay.gd" type="Script" id=6]
+[ext_resource path="res://Image/heart.png" type="Texture" id=7]
+[ext_resource path="res://Image/test.jpg" type="Texture" id=8]
+[ext_resource path="res://font/Evogria.otf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scene/itemwin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scene/Balloom.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Image/score.png" type="Texture" id=12]
+[ext_resource path="res://Script/sodiem.gd" type="Script" id=13]
+[ext_resource path="res://Sound/251461__joshuaempyre__arcade-music-loop.wav" type="AudioStream" id=14]
 [ext_resource path="res://Image/background.jpg" type="Texture" id=15]
+[ext_resource path="res://Scene/rock.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scene/Kondoria.tscn" type="PackedScene" id=21]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "down",
-"speed": 5.0
-} ]
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 9 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13, 13 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 13, 13 )
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 9 )
 
 [node name="level1" type="Node"]
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 367.5, 207.75 )
+position = Vector2( 368, 208 )
 scale = Vector2( 1.17732, 0.998801 )
 texture = ExtResource( 15 )
 
-[node name="nhanvat" type="KinematicBody2D" parent="."]
-position = Vector2( 48, 48 )
-collision_layer = 2
-collision_mask = 7
-script = ExtResource( 14 )
+[node name="test" type="Sprite" parent="background"]
+position = Vector2( 339.755, 0 )
+scale = Vector2( 0.244185, 1.46228 )
+texture = ExtResource( 8 )
 
-[node name="Player" type="AnimatedSprite" parent="nhanvat"]
-position = Vector2( 5.78947, 0.526314 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 1 )
-animation = "up"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nhanvat"]
-shape = SubResource( 2 )
-
-[node name="Area2D" type="Area2D" parent="nhanvat"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nhanvat/Area2D"]
-shape = SubResource( 3 )
+[node name="nhanvat" parent="." instance=ExtResource( 2 )]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -78,4 +46,218 @@ cell_size = Vector2( 32, 32 )
 collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 10, 4, 0, 11, 4, 0, 12, 4, 0, 13, 4, 0, 14, 4, 0, 15, 4, 0, 16, 4, 0, 17, 4, 0, 18, 4, 0, 19, 4, 0, 20, 4, 0, 21, 4, 0, 22, 4, 0, 65536, 4, 0, 65558, 4, 0, 131072, 4, 0, 131074, 4, 0, 131076, 4, 0, 131078, 4, 0, 131080, 4, 0, 131082, 4, 0, 131084, 4, 0, 131086, 4, 0, 131088, 4, 0, 131090, 4, 0, 131092, 4, 0, 131094, 4, 0, 196608, 4, 0, 196630, 4, 0, 262144, 4, 0, 262146, 4, 0, 262148, 4, 0, 262150, 4, 0, 262152, 4, 0, 262154, 4, 0, 262156, 4, 0, 262158, 4, 0, 262160, 4, 0, 262162, 4, 0, 262164, 4, 0, 262166, 4, 0, 327680, 4, 0, 327702, 4, 0, 393216, 4, 0, 393218, 4, 0, 393220, 4, 0, 393222, 4, 0, 393224, 4, 0, 393226, 4, 0, 393228, 4, 0, 393230, 4, 0, 393232, 4, 0, 393234, 4, 0, 393236, 4, 0, 393238, 4, 0, 458752, 4, 0, 458774, 4, 0, 524288, 4, 0, 524290, 4, 0, 524292, 4, 0, 524294, 4, 0, 524296, 4, 0, 524298, 4, 0, 524300, 4, 0, 524302, 4, 0, 524304, 4, 0, 524306, 4, 0, 524308, 4, 0, 524310, 4, 0, 589824, 4, 0, 589846, 4, 0, 655360, 4, 0, 655362, 4, 0, 655364, 4, 0, 655366, 4, 0, 655368, 4, 0, 655370, 4, 0, 655372, 4, 0, 655374, 4, 0, 655376, 4, 0, 655378, 4, 0, 655380, 4, 0, 655382, 4, 0, 720896, 4, 0, 720918, 4, 0, 786432, 4, 0, 786433, 4, 0, 786434, 4, 0, 786435, 4, 0, 786436, 4, 0, 786437, 4, 0, 786438, 4, 0, 786439, 4, 0, 786440, 4, 0, 786441, 4, 0, 786442, 4, 0, 786443, 4, 0, 786444, 4, 0, 786445, 4, 0, 786446, 4, 0, 786447, 4, 0, 786448, 4, 0, 786449, 4, 0, 786450, 4, 0, 786451, 4, 0, 786452, 4, 0, 786453, 4, 0, 786454, 4, 0 )
-[connection signal="body_entered" from="nhanvat/Area2D" to="nhanvat" method="_on_Area2D_body_entered"]
+
+[node name="Power_up" type="Node2D" parent="."]
+
+[node name="Speed" parent="Power_up" instance=ExtResource( 3 )]
+position = Vector2( 176, 48 )
+
+[node name="Heart" parent="Power_up" instance=ExtResource( 4 )]
+position = Vector2( 304, 176 )
+
+[node name="Bombs" parent="Power_up" instance=ExtResource( 5 )]
+position = Vector2( 688, 368 )
+
+[node name="Speed2" parent="Power_up" instance=ExtResource( 3 )]
+position = Vector2( 496, 240 )
+
+[node name="quaman" parent="Power_up" instance=ExtResource( 10 )]
+position = Vector2( 368, 144 )
+
+[node name="rock_no_duoc" type="Node2D" parent="."]
+
+[node name="rock" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 208, 48 )
+
+[node name="rock2" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 176, 48 )
+
+[node name="rock3" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 176, 80 )
+
+[node name="rock4" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 112, 144 )
+
+[node name="rock5" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 112, 176 )
+
+[node name="rock6" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 80, 176 )
+
+[node name="rock7" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 240, 208 )
+
+[node name="rock8" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 240, 240 )
+
+[node name="rock45" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 400, 176 )
+
+[node name="rock9" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 112, 304 )
+
+[node name="rock10" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 80, 304 )
+
+[node name="rock11" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 144, 304 )
+
+[node name="rock12" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 368, 112 )
+
+[node name="rock13" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 368, 80 )
+
+[node name="rock14" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 368, 48 )
+
+[node name="rock15" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 368, 240 )
+
+[node name="rock16" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 368, 272 )
+
+[node name="rock17" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 336, 240 )
+
+[node name="rock18" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 496, 240 )
+
+[node name="rock19" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 560, 176 )
+
+[node name="rock20" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 496, 176 )
+
+[node name="rock21" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 560, 240 )
+
+[node name="rock22" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 496, 368 )
+
+[node name="rock23" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 528, 368 )
+
+[node name="rock24" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 560, 368 )
+
+[node name="rock25" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 560, 336 )
+
+[node name="rock26" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 80 )
+
+[node name="rock27" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 112 )
+
+[node name="rock28" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 656, 112 )
+
+[node name="rock29" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 496, 48 )
+
+[node name="rock30" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 495, 79 )
+
+[node name="rock31" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 304, 368 )
+
+[node name="rock38" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 432, 336 )
+
+[node name="rock39" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 400, 368 )
+
+[node name="rock40" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 368 )
+
+[node name="rock41" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 688, 336 )
+
+[node name="rock42" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 208 )
+
+[node name="rock43" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 304, 176 )
+
+[node name="rock44" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 304, 112 )
+
+[node name="rock32" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 272, 368 )
+
+[node name="rock33" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 240, 368 )
+
+[node name="rock34" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 240, 336 )
+
+[node name="rock35" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 272 )
+
+[node name="rock36" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 624, 304 )
+
+[node name="rock37" parent="rock_no_duoc" instance=ExtResource( 16 )]
+position = Vector2( 656, 304 )
+
+[node name="Monter" type="Node2D" parent="."]
+
+[node name="Kondoria" parent="Monter" instance=ExtResource( 21 )]
+position = Vector2( 176, 240 )
+
+[node name="Kondoria3" parent="Monter" instance=ExtResource( 21 )]
+position = Vector2( 688, 240 )
+
+[node name="Balloom" parent="Monter" instance=ExtResource( 11 )]
+position = Vector2( 592, 112 )
+
+[node name="Balloom2" parent="Monter" instance=ExtResource( 11 )]
+position = Vector2( 176, 368 )
+
+[node name="Bomb" type="Node2D" parent="."]
+
+[node name="Sidebar" type="Node2D" parent="."]
+position = Vector2( 736, 0 )
+
+[node name="heart" type="Sprite" parent="Sidebar"]
+position = Vector2( 24, 80 )
+scale = Vector2( 0.0291533, 0.035828 )
+texture = ExtResource( 7 )
+
+[node name="HeartDisplay" type="Label" parent="Sidebar"]
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 104.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.054902, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Sprite" parent="Sidebar"]
+position = Vector2( 48, 176 )
+scale = Vector2( 0.0788954, 0.12987 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="Sidebar"]
+margin_left = 8.0
+margin_top = 216.0
+margin_right = 80.0
+margin_bottom = 277.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.262745, 0.12549, 0.12549, 1 )
+custom_colors/font_outline_modulate = Color( 0.384314, 0.152941, 0.152941, 1 )
+align = 1
+valign = 1
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sidebar"]
+stream = ExtResource( 14 )
+autoplay = true

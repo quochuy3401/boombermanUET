@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Image/brick/brick.png" type="Texture" id=1]
+[ext_resource path="res://Script/rock.gd" type="Script" id=2]
+[ext_resource path="res://Image/brick/brick_exploded2.png" type="Texture" id=3]
+[ext_resource path="res://Image/brick/brick_exploded1.png" type="Texture" id=4]
+[ext_resource path="res://Image/brick/brick_exploded.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": false,
+"name": "Destroy",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Normal",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15, 15 )
+
+[node name="rock" type="KinematicBody2D"]
+position = Vector2( 80, 112 )
+collision_layer = 32
+collision_mask = 31
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Brick" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -3.8147e-06 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "Normal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

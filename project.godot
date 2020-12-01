@@ -16,12 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Bomberman"
-run/main_scene="res://Scene/Bomberman1.tscn"
+run/main_scene="res://Scene/Menu.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=736
+window/size/width=832
 window/size/height=416
 
 [layer_names]
@@ -30,6 +30,12 @@ window/size/height=416
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Bomb"
 2d_physics/layer_4="BombExplosion"
+2d_physics/layer_5="Monter"
+2d_physics/layer_6="Rock"
+2d_physics/layer_7="Speed"
+2d_physics/layer_8="Heart"
+2d_physics/layer_9="MoreBomb"
+2d_physics/layer_10="Portal"
 
 [rendering]
 

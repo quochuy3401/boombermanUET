@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Image/bomb/bomb_exploded2.png" type="Texture" id=1]
 [ext_resource path="res://Image/bomb/explosion_horizontal_right_last1.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Image/bomb/explosion_horizontal_left_last1.png" type="Texture" id=14]
 [ext_resource path="res://Image/bomb/explosion_horizontal_right_last2.png" type="Texture" id=15]
 [ext_resource path="res://Script/BombExplosion.gd" type="Script" id=16]
+[ext_resource path="res://Sound/BombExplosion.wav" type="AudioStream" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -149,6 +150,9 @@ shape = SubResource( 10 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -46.0398, 13.3744, -13.5129, 13.728, -13.5129, 45.5478, 14.0642, 45.5478, 13.7107, 13.728, 45.5305, 13.3744, 45.5305, -14.2027, 13.7107, -13.4956, 13.3571, -46.0225, -13.8665, -46.0225, -13.8665, -13.8492, -45.6863, -13.8492 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
 [connection signal="body_entered" from="tren/tren" to="." method="_on_tren_body_entered"]
 [connection signal="body_entered" from="duoi/duoi" to="." method="_on_duoi_body_entered"]
 [connection signal="body_entered" from="trai/trai" to="." method="_on_trai_body_entered"]
